@@ -1,0 +1,28 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace GameStoreModel.Models
+{
+    using System.ComponentModel.DataAnnotations;
+    using System.Data;
+
+    public class Game
+    {
+        [Key]
+        public Guid GameId { get; set; }
+
+        public string Key { get; set; }   // alias for link crating
+
+        public string Name { get; set; }
+
+        public string Description { get; set; }
+
+        public ICollection<Comment> ListOfComments { get; set; }
+
+        public IList<GameGenre> GameGenre { get; set; }
+
+        public IList<GamePlatform> GamePlatform { get; set; }
+
+
+    }
+}
