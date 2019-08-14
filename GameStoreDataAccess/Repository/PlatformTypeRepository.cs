@@ -2,16 +2,14 @@
 namespace GameStore.DAL.Repository
 {
     using GameStore.DAL.Interfaces;
-
     using GameStoreModel;
     using GameStoreModel.Models;
 
-    public class CommentRepository : Repository<Comment>, ICommentRepository
+    public class PlatformTypeRepository : Repository<PlatformType>, IPlatformTypeRepository
     {
-        public CommentRepository(GameStoreDb gameStoreDb)
+        public PlatformTypeRepository(GameStoreDb gameStoreDb)
             : base(gameStoreDb)
         {
         }
-
     }
 }

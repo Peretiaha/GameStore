@@ -1,4 +1,4 @@
-﻿namespace GameStore.DLL.Interfaces
+﻿namespace GameStore.DAL.Interfaces
 {
     using System;
     using System.Linq;
@@ -7,6 +7,7 @@
     public interface IRepository<T>
     {
         IQueryable<T> FindAll();    // How will be sorted, add another methods!
+
         IQueryable<T> FindByCondition(Expression<Func<T, bool>> expression);
 
         void Create(T entity);

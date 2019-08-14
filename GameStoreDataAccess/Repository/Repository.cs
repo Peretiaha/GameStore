@@ -9,7 +9,7 @@ using GameStoreModel.Interfaces;
 
 namespace GameStore.DAL.Repository
 {
-    using GameStore.DLL.Interfaces;
+    using GameStore.DAL.Interfaces;
 
     public abstract class Repository<T> : IRepository<T> where T : class
     {

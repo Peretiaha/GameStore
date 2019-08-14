@@ -6,12 +6,11 @@ namespace GameStore.DAL.Repository
     using GameStoreModel;
     using GameStoreModel.Models;
 
-    public class CommentRepository : Repository<Comment>, ICommentRepository
+    public class GenreRepository : Repository<Genre>, IGenreRepository
     {
-        public CommentRepository(GameStoreDb gameStoreDb)
+        public GenreRepository(GameStoreDb gameStoreDb)
             : base(gameStoreDb)
         {
         }
-
     }
 }

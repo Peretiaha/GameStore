@@ -29,9 +29,10 @@ namespace GameStoreModel
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<GamePlatform>().HasOne<Game>(s => s.Game).WithMany(sc => sc.GamePlatform)
-                .HasForeignKey(s => s.GameId);
+            
             modelBuilder.Entity<GameGenre>().HasOne<Game>(s => s.Game).WithMany(sc => sc.GameGenre)
+                .HasForeignKey(s => s.GameId);
+            modelBuilder.Entity<GamePlatform>().HasOne<Game>(s => s.Game).WithMany(sc => sc.GamePlatform)
                 .HasForeignKey(s => s.GameId);
             modelBuilder.Entity<GamePlatform>().HasKey(sc => new { sc.GameId, sc.PlatformTypeId }); 
             modelBuilder.Entity<GameGenre>().HasKey(sc => new { sc.GameId, sc.GenreId });

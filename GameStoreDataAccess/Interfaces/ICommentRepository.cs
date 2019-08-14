@@ -1,11 +1,10 @@
-﻿namespace GameStore.DAL.Interfaces
+﻿
+namespace GameStore.DAL.Interfaces
 {
-    using GameStore.DLL.Interfaces;
-    using GameStoreModel.Models;
+  using GameStoreModel.Models;
 
-    interface ICommentRepository : IRepository<Comment> 
+    public interface ICommentRepository : IRepository<Comment> 
     {
-
-
+        
     }
 }
