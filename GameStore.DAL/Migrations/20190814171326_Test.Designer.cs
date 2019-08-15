@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace GameStoreModel.Migrations
+namespace GameStore.DAL.Migrations
 {
     [DbContext(typeof(GameStoreDb))]
-    [Migration("20190814114428_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20190814171326_Test")]
+    partial class Test
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -38,7 +38,7 @@ namespace GameStoreModel.Migrations
 
                     b.HasIndex("GameId");
 
-                    b.ToTable("Comment");
+                    b.ToTable("Comments");
                 });
 
             modelBuilder.Entity("GameStoreModel.Models.Game", b =>
@@ -54,7 +54,7 @@ namespace GameStoreModel.Migrations
 
                     b.HasKey("GameId");
 
-                    b.ToTable("Game");
+                    b.ToTable("Games");
                 });
 
             modelBuilder.Entity("GameStoreModel.Models.GameGenre", b =>
@@ -67,7 +67,7 @@ namespace GameStoreModel.Migrations
 
                     b.HasIndex("GenreId");
 
-                    b.ToTable("GameGenre");
+                    b.ToTable("GameGenres");
                 });
 
             modelBuilder.Entity("GameStoreModel.Models.GamePlatform", b =>
@@ -80,7 +80,7 @@ namespace GameStoreModel.Migrations
 
                     b.HasIndex("PlatformTypeId");
 
-                    b.ToTable("GamePlatform");
+                    b.ToTable("GamePlatforms");
                 });
 
             modelBuilder.Entity("GameStoreModel.Models.Genre", b =>
@@ -94,7 +94,7 @@ namespace GameStoreModel.Migrations
 
                     b.HasKey("GenreId");
 
-                    b.ToTable("Genre");
+                    b.ToTable("Genres");
                 });
 
             modelBuilder.Entity("GameStoreModel.Models.PlatformType", b =>
@@ -106,7 +106,7 @@ namespace GameStoreModel.Migrations
 
                     b.HasKey("PlatformTypeId");
 
-                    b.ToTable("PlatformType");
+                    b.ToTable("PlatformTypes");
                 });
 
             modelBuilder.Entity("GameStoreModel.Models.Comment", b =>
@@ -125,7 +125,7 @@ namespace GameStoreModel.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("GameStoreModel.Models.Genre", "Genre")
-                        .WithMany("GameGenres")
+                        .WithMany("GameGenre")
                         .HasForeignKey("GenreId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

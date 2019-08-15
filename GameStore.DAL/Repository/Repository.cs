@@ -11,9 +11,11 @@ namespace GameStore.DAL.Repository
 {
     using GameStore.DAL.Interfaces;
 
+    using GameStoreModel.Models;
+
     public abstract class Repository<T> : IRepository<T> where T : class
     {
-        protected GameStoreDb GameStoreDb { get; set; }
+        private  readonly GameStoreDb GameStoreDb;
 
         public Repository(GameStoreDb gameStoreDb)
         {
@@ -41,9 +43,5 @@ namespace GameStore.DAL.Repository
             throw new NotImplementedException();
         }
 
-        public IQueryable<T> FindByCondition(Expression<Func<T, bool>> expression)
-        {
-            throw new NotImplementedException();
         }
-    }
 }

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace GameStoreModel.Models
 {
-    using System.ComponentModel.DataAnnotations;
 
     public class Genre
     {
@@ -14,7 +14,7 @@ namespace GameStoreModel.Models
 
         public string Name { get; set; }
 
-        public IList<GameGenre> GameGenres { get; set; }
+        public IList<GameGenre> GameGenre { get; set; }
 
     }
 }

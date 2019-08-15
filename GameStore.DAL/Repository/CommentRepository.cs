@@ -1,8 +1,9 @@
 ﻿
 namespace GameStore.DAL.Repository
 {
+    using System;
+    using System.Collections;
     using GameStore.DAL.Interfaces;
-
     using GameStoreModel;
     using GameStoreModel.Models;
 
@@ -11,6 +12,11 @@ namespace GameStore.DAL.Repository
         public CommentRepository(GameStoreDb gameStoreDb)
             : base(gameStoreDb)
         {
+        }
+
+        public IEnumerable GetCommentsByGameKey(string key)
+        {
+            throw new NotImplementedException();
         }
 
     }

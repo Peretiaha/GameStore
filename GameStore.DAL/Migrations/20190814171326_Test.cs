@@ -1,14 +1,14 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace GameStoreModel.Migrations
+namespace GameStore.DAL.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class Test : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Game",
+                name: "Games",
                 columns: table => new
                 {
                     GameId = table.Column<Guid>(nullable: false),
@@ -18,11 +18,11 @@ namespace GameStoreModel.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Game", x => x.GameId);
+                    table.PrimaryKey("PK_Games", x => x.GameId);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Genre",
+                name: "Genres",
                 columns: table => new
                 {
                     GenreId = table.Column<Guid>(nullable: false),
@@ -31,11 +31,11 @@ namespace GameStoreModel.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Genre", x => x.GenreId);
+                    table.PrimaryKey("PK_Genres", x => x.GenreId);
                 });
 
             migrationBuilder.CreateTable(
-                name: "PlatformType",
+                name: "PlatformTypes",
                 columns: table => new
                 {
                     PlatformTypeId = table.Column<Guid>(nullable: false),
@@ -43,11 +43,11 @@ namespace GameStoreModel.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PlatformType", x => x.PlatformTypeId);
+                    table.PrimaryKey("PK_PlatformTypes", x => x.PlatformTypeId);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Comment",
+                name: "Comments",
                 columns: table => new
                 {
                     CommentId = table.Column<Guid>(nullable: false),
@@ -58,17 +58,17 @@ namespace GameStoreModel.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Comment", x => x.CommentId);
+                    table.PrimaryKey("PK_Comments", x => x.CommentId);
                     table.ForeignKey(
-                        name: "FK_Comment_Game_GameId",
+                        name: "FK_Comments_Games_GameId",
                         column: x => x.GameId,
-                        principalTable: "Game",
+                        principalTable: "Games",
                         principalColumn: "GameId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "GameGenre",
+                name: "GameGenres",
                 columns: table => new
                 {
                     GameId = table.Column<Guid>(nullable: false),
@@ -76,23 +76,23 @@ namespace GameStoreModel.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_GameGenre", x => new { x.GameId, x.GenreId });
+                    table.PrimaryKey("PK_GameGenres", x => new { x.GameId, x.GenreId });
                     table.ForeignKey(
-                        name: "FK_GameGenre_Game_GameId",
+                        name: "FK_GameGenres_Games_GameId",
                         column: x => x.GameId,
-                        principalTable: "Game",
+                        principalTable: "Games",
                         principalColumn: "GameId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_GameGenre_Genre_GenreId",
+                        name: "FK_GameGenres_Genres_GenreId",
                         column: x => x.GenreId,
-                        principalTable: "Genre",
+                        principalTable: "Genres",
                         principalColumn: "GenreId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "GamePlatform",
+                name: "GamePlatforms",
                 columns: table => new
                 {
                     GameId = table.Column<Guid>(nullable: false),
@@ -100,56 +100,56 @@ namespace GameStoreModel.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_GamePlatform", x => new { x.GameId, x.PlatformTypeId });
+                    table.PrimaryKey("PK_GamePlatforms", x => new { x.GameId, x.PlatformTypeId });
                     table.ForeignKey(
-                        name: "FK_GamePlatform_Game_GameId",
+                        name: "FK_GamePlatforms_Games_GameId",
                         column: x => x.GameId,
-                        principalTable: "Game",
+                        principalTable: "Games",
                         principalColumn: "GameId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_GamePlatform_PlatformType_PlatformTypeId",
+                        name: "FK_GamePlatforms_PlatformTypes_PlatformTypeId",
                         column: x => x.PlatformTypeId,
-                        principalTable: "PlatformType",
+                        principalTable: "PlatformTypes",
                         principalColumn: "PlatformTypeId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Comment_GameId",
-                table: "Comment",
+                name: "IX_Comments_GameId",
+                table: "Comments",
                 column: "GameId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_GameGenre_GenreId",
-                table: "GameGenre",
+                name: "IX_GameGenres_GenreId",
+                table: "GameGenres",
                 column: "GenreId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_GamePlatform_PlatformTypeId",
-                table: "GamePlatform",
+                name: "IX_GamePlatforms_PlatformTypeId",
+                table: "GamePlatforms",
                 column: "PlatformTypeId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Comment");
+                name: "Comments");
 
             migrationBuilder.DropTable(
-                name: "GameGenre");
+                name: "GameGenres");
 
             migrationBuilder.DropTable(
-                name: "GamePlatform");
+                name: "GamePlatforms");
 
             migrationBuilder.DropTable(
-                name: "Genre");
+                name: "Genres");
 
             migrationBuilder.DropTable(
-                name: "Game");
+                name: "Games");
 
             migrationBuilder.DropTable(
-                name: "PlatformType");
+                name: "PlatformTypes");
         }
     }
 }

@@ -5,7 +5,6 @@ namespace GameStoreServices
 {
     public class GameServices
     {
-
         
 
     }

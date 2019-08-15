@@ -19,9 +19,9 @@ namespace GameStoreModel.Models
 
         public ICollection<Comment> ListOfComments { get; set; }
 
-        public IList<GameGenre> GameGenre { get; set; }
+        public ICollection<GameGenre> GameGenre { get; set; }
 
-        public IList<GamePlatform> GamePlatform { get; set; }
+        public ICollection<GamePlatform> GamePlatform { get; set; }
 
 
     }
