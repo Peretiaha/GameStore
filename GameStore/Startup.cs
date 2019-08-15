@@ -1,14 +1,22 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
+using GameStore.BLL.Interfaces;
+using GameStore.BLL.Services;
+using GameStore.DAL.Interfaces;
+using GameStore.DAL.Repository;
+using GameStoreModel;
+using Infrastructure.Infrastracture;
+using Autofac;
 
 namespace GameStore
 {
-    using GameStoreModel;
+    using Autofac.Core;
 
     public class Startup
     {
@@ -31,6 +39,16 @@ namespace GameStore
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            var builder = new ContainerBuilder();
+
+            builder.RegisterType<GameStoreDb>().AsSelf().SingleInstance();
+            builder.RegisterType<RepositoryFactory>().As<IRepositoryFactory>();
+            builder.RegisterType<UnitOfWork>().As<IUnitOfWork>().SingleInstance();
+            builder.RegisterType<CommentService>().As<ICommentService>().InstancePerRequest();
+            builder.RegisterType<GameService>().As<ICommentService>().SingleInstance();
+
+
 
             var connection = @"Server=EPUAKHAW0861;Database=GameStoreDb;Trusted_Connection=True;ConnectRetryCount=0";
             services.AddDbContext<GameStoreDb>

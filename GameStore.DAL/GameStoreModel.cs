@@ -38,10 +38,16 @@ namespace GameStoreModel
                 .HasForeignKey(s => s.GameId);
             modelBuilder.Entity<GamePlatform>().HasOne<PlatformType>(s => s.Platform).WithMany(sc => sc.GamePlatform)
                 .HasForeignKey(s => s.PlatformTypeId);
-            modelBuilder.Entity<GamePlatform>().HasKey(sc => new { sc.GameId, sc.PlatformTypeId }); 
-            modelBuilder.Entity<GameGenre>().HasKey(sc => new { sc.GameId, sc.GenreId });
+
+            modelBuilder.Entity<GamePlatform>().HasKey(sc => new { sc.GameId, sc.PlatformTypeId });   // Composite key
+            modelBuilder.Entity<GameGenre>().HasKey(sc => new { sc.GameId, sc.GenreId });       // Composite key
+
             modelBuilder.Entity<Comment>().HasOne<Game>(s => s.Game).WithMany(m => m.ListOfComments)
                 .HasForeignKey(s => s.GameId);
+
+            modelBuilder.Entity<Game>(entity => { entity.HasIndex(e => e.Key).IsUnique(); });   // Unique Key in Game
+
+            modelBuilder.Entity<Genre>(entity => { entity.HasIndex(e => e.Name).IsUnique(); });  // Unique Name in Genre
 
         }
     }

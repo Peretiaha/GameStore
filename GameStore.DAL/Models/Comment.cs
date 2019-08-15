@@ -17,6 +17,8 @@ namespace GameStoreModel.Models
 
         public Game Game { get; set; }
 
+        public bool IsDeleted { get; set; }
+
         public Guid BaseCommentId { get; set; }
 
     }

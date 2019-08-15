@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GameStore.BLL\GameStore.BLL.csproj" />
+    <ProjectReference Include="..\GameStore.DAL\GameStore.DAL.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -50,6 +50,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\GameStore.BLL\GameStore.BLL.csproj" />
+    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

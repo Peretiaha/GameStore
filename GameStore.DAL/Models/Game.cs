@@ -11,17 +11,22 @@ namespace GameStoreModel.Models
         [Key]
         public Guid GameId { get; set; }
 
-        public string Key { get; set; }   // alias for link crating
+        public string Key { get; set; }   // alias for link creating
 
         public string Name { get; set; }
 
         public string Description { get; set; }
+
+        public bool IsDeleted { get; set; }
 
         public ICollection<Comment> ListOfComments { get; set; }
 
         public ICollection<GameGenre> GameGenre { get; set; }
 
         public ICollection<GamePlatform> GamePlatform { get; set; }
+
+
+
 
 
     }
