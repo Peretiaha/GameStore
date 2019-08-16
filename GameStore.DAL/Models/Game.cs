@@ -4,8 +4,10 @@ using System.Collections.Generic;
 namespace GameStoreModel.Models
 {
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
     using System.Data;
 
+    [Table("Game")]
     public class Game
     {
         [Key]

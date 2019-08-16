@@ -4,6 +4,9 @@ using System.Text;
 
 namespace GameStoreModel.Models
 {
+    using System.ComponentModel.DataAnnotations.Schema;
+
+    [Table("GamePlatform")]
     public class GamePlatform
     {
         public Guid GameId { get; set; }

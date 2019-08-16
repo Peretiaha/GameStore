@@ -2,6 +2,9 @@
 
 namespace GameStoreModel.Models
 {
+    using System.ComponentModel.DataAnnotations.Schema;
+
+    [Table("GameGenre")]
     public class GameGenre
     {
         public Guid GameId { get; set; }

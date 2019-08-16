@@ -13,9 +13,12 @@ using GameStore.DAL.Repository;
 using GameStoreModel;
 using Infrastructure.Infrastracture;
 using Autofac;
+using Autofac.Extensions.DependencyInjection;
 
 namespace GameStore
 {
+    using System;
+
     using Autofac.Core;
 
     public class Startup
@@ -28,7 +31,7 @@ namespace GameStore
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             services.Configure<CookiePolicyOptions>(options =>
             {
@@ -36,6 +39,10 @@ namespace GameStore
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
+
+            var connection = @"Server=EPUAKHAW0861;Database=GameStoreDb;Trusted_Connection=True;ConnectRetryCount=0";
+            services.AddDbContext<GameStoreDb>
+                (options => options.UseSqlServer(connection));
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
@@ -45,15 +52,20 @@ namespace GameStore
             builder.RegisterType<GameStoreDb>().AsSelf().SingleInstance();
             builder.RegisterType<RepositoryFactory>().As<IRepositoryFactory>();
             builder.RegisterType<UnitOfWork>().As<IUnitOfWork>().SingleInstance();
-            builder.RegisterType<CommentService>().As<ICommentService>().InstancePerRequest();
-            builder.RegisterType<GameService>().As<ICommentService>().SingleInstance();
+            builder.RegisterType<CommentService>().As<ICommentService>().SingleInstance();
+            builder.RegisterType<GameService>().As<IGameService>().SingleInstance();
 
 
+            builder.RegisterGeneric(typeof(Repository<>)).As(typeof(IRepository<>));
 
-            var connection = @"Server=EPUAKHAW0861;Database=GameStoreDb;Trusted_Connection=True;ConnectRetryCount=0";
-            services.AddDbContext<GameStoreDb>
-                (options => options.UseSqlServer(connection));
+            builder.RegisterAssemblyTypes(typeof(GameService).Assembly).Where(t => t.Name.EndsWith("Service"))
+                .AsImplementedInterfaces().InstancePerDependency();
 
+            builder.Populate(services);
+
+            var container = builder.Build();
+            //return new AutofacServiceProvider(container);
+            return container.Resolve<IServiceProvider>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

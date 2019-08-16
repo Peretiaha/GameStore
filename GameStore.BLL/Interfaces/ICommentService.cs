@@ -9,11 +9,11 @@ namespace GameStore.BLL.Interfaces
 
     public interface ICommentService : IServices<Comment>
     {
-        void Create(Comment comment);
+       new void Create(Comment comment);
 
-        void Edit(Comment comment);
+        new void Edit(Comment comment);
 
-        void Delete(Comment comment);
+        new void Delete(Comment comment);
 
         IEnumerable<Comment> GetCommentsByGameKey(string key);
 

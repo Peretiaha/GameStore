@@ -4,7 +4,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace GameStoreModel.Models
 {
+    using System.ComponentModel.DataAnnotations.Schema;
 
+    [Table("Genre")]
     public class Genre
     {
         [Key]
